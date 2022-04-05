@@ -28,7 +28,7 @@ class CrazyButtonsPage extends StatelessWidget {
           Container(height: 20.0),
           TextField(
             controller: _controller,
-            buildContextualMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, Offset? secondaryAnchor) {
+            buildContextualMenu: (BuildContext context, ContextualMenuController controller, EditableTextState editableTextState, Offset primaryAnchor, Offset? secondaryAnchor) {
               return TextSelectionToolbarButtonDatasBuilder(
                 editableTextState: editableTextState,
                 builder: (BuildContext context, List<ContextualMenuButtonData> buttonDatas) {

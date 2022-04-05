@@ -22,7 +22,7 @@ class AnywherePage extends StatelessWidget {
         title: const Text(AnywherePage.title),
       ),
       body: InheritedContextualMenu(
-        buildMenu: (BuildContext context, Offset primaryAnchor, Offset? secondaryAnchor) {
+        buildMenu: (BuildContext context, ContextualMenuController controller, Offset primaryAnchor, Offset? secondaryAnchor) {
           return CupertinoDesktopTextSelectionToolbar(
             anchor: primaryAnchor,
             children: <Widget>[
@@ -120,5 +120,3 @@ class _DesktopContextualMenuGestureDetectorState extends State<_DesktopContextua
     );
   }
 }
-
-

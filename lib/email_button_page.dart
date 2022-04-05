@@ -33,7 +33,7 @@ class EmailButtonPage extends StatelessWidget {
           Container(height: 20.0),
           TextField(
             controller: _controller,
-            buildContextualMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, Offset? secondaryAnchor) {
+            buildContextualMenu: (BuildContext context, ContextualMenuController controller, EditableTextState editableTextState, Offset primaryAnchor, Offset? secondaryAnchor) {
               final TextEditingValue value = editableTextState.textEditingValue;
 
               return TextSelectionToolbarButtonDatasBuilder(
@@ -43,6 +43,7 @@ class EmailButtonPage extends StatelessWidget {
                     buttonDatas.insert(0, ContextualMenuButtonData(
                       label: 'Send email',
                       onPressed: () {
+                        controller.hide();
                         Navigator.of(context).push(_showDialog(context));
                       },
                     ));
