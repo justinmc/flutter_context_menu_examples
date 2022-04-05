@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'anywhere_page.dart';
 import 'small_changes_page.dart';
+import 'email_button_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
       routes: <String, Widget Function(BuildContext)>{
         '/': (BuildContext context) => const MyHomePage(),
         AnywherePage.route: (BuildContext context) => const AnywherePage(),
-        SmallChangesPage.route: (BuildContext context) => const SmallChangesPage(),
+        SmallChangesPage.route: (BuildContext context) => SmallChangesPage(),
+        EmailButtonPage.route: (BuildContext context) => const EmailButtonPage(),
       },
     );
   }
@@ -47,6 +49,11 @@ class MyHomePage extends StatelessWidget {
             route: SmallChangesPage.route,
             title: SmallChangesPage.title,
             subtitle: SmallChangesPage.subtitle,
+          ),
+          MyListItem(
+            route: EmailButtonPage.route,
+            title: EmailButtonPage.title,
+            subtitle: EmailButtonPage.subtitle,
           ),
         ],
       ),
