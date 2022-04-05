@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
 class EmailButtonPage extends StatelessWidget {
-  const EmailButtonPage({
+  EmailButtonPage({
     Key? key,
   }) : super(key: key);
 
   static const String route = 'email-button';
   static const String title = 'Email Button';
   static const String subtitle = 'A selection-aware email button';
+
+  final TextEditingController _controller = TextEditingController(
+    text: 'Select the email address and open the menu: me@example.com',
+  );
 
   DialogRoute _showDialog (BuildContext context) {
     return DialogRoute<void>(
@@ -28,6 +32,7 @@ class EmailButtonPage extends StatelessWidget {
         children: <Widget>[
           Container(height: 20.0),
           TextField(
+            controller: _controller,
             buildContextualMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, Offset? secondaryAnchor) {
               final TextEditingValue value = editableTextState.textEditingValue;
 

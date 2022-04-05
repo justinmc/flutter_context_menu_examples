@@ -2,13 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AnywherePage extends StatelessWidget {
-  const AnywherePage({
+  AnywherePage({
     Key? key,
   }) : super(key: key);
 
   static const String route = 'anywhere';
   static const String title = 'Contextual Menu Anywhere Example';
   static const String subtitle = 'A ContextualMenu outside of a text field.';
+
+  final TextEditingController _controller = TextEditingController(
+    text: 'Right click anywhere outside of a field to show a custom menu.',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +21,7 @@ class AnywherePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(AnywherePage.title),
       ),
-      // TODO(justinmc): Maybe the "Area" name is misleading.
       body: InheritedContextualMenu(
-        // TODO(justinmc): Display different items depending on selection.
-        // Have to look up EditableText with global key.
-        // Alternative: Special ContextualMenuArea that passes EditableTextState
-        // in buildMenu.
         buildMenu: (BuildContext context, Offset primaryAnchor, Offset? secondaryAnchor) {
           return CupertinoDesktopTextSelectionToolbar(
             anchor: primaryAnchor,
@@ -30,8 +29,8 @@ class AnywherePage extends StatelessWidget {
               CupertinoDesktopTextSelectionToolbarButton.text(
                 context: context,
                 onPressed: () {
-                  // Does nothing but close the menu for now...
                   contextualMenuController!.hide();
+                  Navigator.of(context).pop();
                 },
                 text: 'Back',
               ),
@@ -46,11 +45,9 @@ class AnywherePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Container(height: 20.0),
-                  // TODO(justinmc): Once you've made TextSelectionToolbarButtons public,
-                  // then pass in buildContextualMenu here as part of the demo.
                   const TextField(),
                   Container(height: 200.0),
-                  const CupertinoTextField(),
+                  CupertinoTextField(controller: _controller),
                   Container(height: 100.0),
                   Container(
                     color: Colors.white,
@@ -72,6 +69,7 @@ class AnywherePage extends StatelessWidget {
   }
 }
 
+// TODO(justinmc): This should be provided by the framework.
 class _DesktopContextualMenuGestureDetector extends StatefulWidget {
   const _DesktopContextualMenuGestureDetector({
     required this.child,
