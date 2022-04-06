@@ -37,7 +37,7 @@ class AnywherePage extends StatelessWidget {
             ],
           );
         },
-        child: _DesktopContextualMenuGestureDetector(
+        child: ContextualMenuGestureDetector(
           child: Builder(
             builder: (BuildContext context) {
               contextualMenuController = InheritedContextualMenu.of(context);
@@ -65,68 +65,6 @@ class AnywherePage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-// TODO(justinmc): This should be provided by the framework.
-class _DesktopContextualMenuGestureDetector extends StatefulWidget {
-  const _DesktopContextualMenuGestureDetector({
-    required this.child,
-    Key? key,
-  }) : super(key: key);
-
-  final Widget child;
-
-  @override
-  State<_DesktopContextualMenuGestureDetector> createState() => _DesktopContextualMenuGestureDetectorState();
-}
-
-class _DesktopContextualMenuGestureDetectorState extends State<_DesktopContextualMenuGestureDetector> {
-  void _onSecondaryTapUp(TapUpDetails details) {
-    _contextualMenuController.show(context, details.globalPosition);
-  }
-
-  void _onTap() {
-    _contextualMenuController.hide();
-  }
-
-  void _onLongPressEnd(LongPressEndDetails details) {
-    _show(details.globalPosition);
-  }
-
-  void _show(Offset position) {
-    _contextualMenuController.show(context, position);
-  }
-
-  ContextualMenuController get _contextualMenuController {
-    final ContextualMenuController? state = InheritedContextualMenu.of(context);
-    assert(state != null, 'No ContextualMenuArea found above in the Widget tree.');
-    return state!;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      // TODO(justinmc): Secondary tapping when the menu is open should fade out
-      // and then fade in to show again at the new location.
-      onSecondaryTapUp: _onSecondaryTapUp,
-      // TODO(justinmc): Ok to look this up in build?
-      onTap: _contextualMenuController.isVisible ? _onTap : null,
-      // TODO(justinmc): Move into framework, both mobile and desktop.
-      onLongPressEnd: _onLongPressEnd,
-      child: widget.child,
     );
   }
 }
