@@ -8,7 +8,7 @@ class AnywherePage extends StatelessWidget {
 
   static const String route = 'anywhere';
   static const String title = 'Contextual Menu Anywhere Example';
-  static const String subtitle = 'A ContextualMenu outside of a text field.';
+  static const String subtitle = 'A ContextualMenu outside of a text field';
 
   final TextEditingController _controller = TextEditingController(
     text: 'Right click anywhere outside of a field to show a custom menu.',
@@ -23,16 +23,16 @@ class AnywherePage extends StatelessWidget {
       ),
       body: InheritedContextualMenu(
         buildMenu: (BuildContext context, ContextualMenuController controller, Offset primaryAnchor, Offset? secondaryAnchor) {
-          return CupertinoDesktopTextSelectionToolbar(
-            anchor: primaryAnchor,
-            children: <Widget>[
-              CupertinoDesktopTextSelectionToolbarButton.text(
-                context: context,
+          return DefaultTextSelectionToolbar(
+            primaryAnchor: primaryAnchor,
+            secondaryAnchor: secondaryAnchor,
+            buttonDatas: <ContextualMenuButtonData>[
+              ContextualMenuButtonData(
                 onPressed: () {
                   contextualMenuController!.hide();
                   Navigator.of(context).pop();
                 },
-                text: 'Back',
+                label: 'Back',
               ),
             ],
           );
