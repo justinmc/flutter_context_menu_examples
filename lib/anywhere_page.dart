@@ -43,9 +43,9 @@ class AnywherePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Container(height: 20.0),
-                  const TextField(),
+                  const CupertinoTextField(),
                   Container(height: 200.0),
-                  CupertinoTextField(controller: _controller),
+                  TextField(controller: _controller),
                   Container(height: 100.0),
                   Container(
                     color: Colors.white,

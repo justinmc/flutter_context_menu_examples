@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'anywhere_page.dart';
 import 'crazy_buttons_page.dart';
 import 'email_button_page.dart';
+import 'field_types_page.dart';
+import 'image_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -24,6 +26,8 @@ class MyApp extends StatelessWidget {
         AnywherePage.route: (BuildContext context) => AnywherePage(),
         CrazyButtonsPage.route: (BuildContext context) => CrazyButtonsPage(),
         EmailButtonPage.route: (BuildContext context) => EmailButtonPage(),
+        ImagePage.route: (BuildContext context) => ImagePage(),
+        FieldTypesPage.route: (BuildContext context) => FieldTypesPage(),
       },
     );
   }
@@ -46,6 +50,11 @@ class MyHomePage extends StatelessWidget {
             subtitle: AnywherePage.subtitle,
           ),
           MyListItem(
+            route: ImagePage.route,
+            title: ImagePage.title,
+            subtitle: ImagePage.subtitle,
+          ),
+          MyListItem(
             route: CrazyButtonsPage.route,
             title: CrazyButtonsPage.title,
             subtitle: CrazyButtonsPage.subtitle,
@@ -54,6 +63,11 @@ class MyHomePage extends StatelessWidget {
             route: EmailButtonPage.route,
             title: EmailButtonPage.title,
             subtitle: EmailButtonPage.subtitle,
+          ),
+          MyListItem(
+            route: FieldTypesPage.route,
+            title: FieldTypesPage.title,
+            subtitle: FieldTypesPage.subtitle,
           ),
         ],
       ),
