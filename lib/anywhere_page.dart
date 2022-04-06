@@ -16,7 +16,6 @@ class AnywherePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late final ContextualMenuController? contextualMenuController;
     return Scaffold(
       appBar: AppBar(
         title: const Text(AnywherePage.title),
@@ -29,7 +28,7 @@ class AnywherePage extends StatelessWidget {
             buttonDatas: <ContextualMenuButtonData>[
               ContextualMenuButtonData(
                 onPressed: () {
-                  contextualMenuController!.hide();
+                  controller.hide();
                   Navigator.of(context).pop();
                 },
                 label: 'Back',
@@ -40,7 +39,6 @@ class AnywherePage extends StatelessWidget {
         child: ContextualMenuGestureDetector(
           child: Builder(
             builder: (BuildContext context) {
-              contextualMenuController = InheritedContextualMenu.of(context);
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
