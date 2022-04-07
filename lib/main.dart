@@ -6,6 +6,7 @@ import 'email_button_page.dart';
 import 'field_types_page.dart';
 import 'full_page.dart';
 import 'image_page.dart';
+import 'modified_action_page.dart';
 import 'reordered_buttons_page.dart';
 
 void main() => runApp(const MyApp());
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         ImagePage.route: (BuildContext context) => ImagePage(),
         FieldTypesPage.route: (BuildContext context) => FieldTypesPage(),
         FullPage.route: (BuildContext context) => FullPage(),
+        ModifiedActionPage.route: (BuildContext context) => ModifiedActionPage(),
       },
     );
   }
@@ -67,6 +69,11 @@ class MyHomePage extends StatelessWidget {
             route: ReorderedButtonsPage.route,
             title: ReorderedButtonsPage.title,
             subtitle: ReorderedButtonsPage.subtitle,
+          ),
+          MyListItem(
+            route: ModifiedActionPage.route,
+            title: ModifiedActionPage.title,
+            subtitle: ModifiedActionPage.subtitle,
           ),
           MyListItem(
             route: EmailButtonPage.route,
