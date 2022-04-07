@@ -6,6 +6,7 @@ import 'email_button_page.dart';
 import 'field_types_page.dart';
 import 'full_page.dart';
 import 'image_page.dart';
+import 'reordered_buttons_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/': (BuildContext context) => const MyHomePage(),
         AnywherePage.route: (BuildContext context) => AnywherePage(),
         CrazyButtonsPage.route: (BuildContext context) => CrazyButtonsPage(),
+        ReorderedButtonsPage.route: (BuildContext context) => ReorderedButtonsPage(),
         EmailButtonPage.route: (BuildContext context) => EmailButtonPage(),
         ImagePage.route: (BuildContext context) => ImagePage(),
         FieldTypesPage.route: (BuildContext context) => FieldTypesPage(),
@@ -60,6 +62,11 @@ class MyHomePage extends StatelessWidget {
             route: CrazyButtonsPage.route,
             title: CrazyButtonsPage.title,
             subtitle: CrazyButtonsPage.subtitle,
+          ),
+          MyListItem(
+            route: ReorderedButtonsPage.route,
+            title: ReorderedButtonsPage.title,
+            subtitle: ReorderedButtonsPage.subtitle,
           ),
           MyListItem(
             route: EmailButtonPage.route,
