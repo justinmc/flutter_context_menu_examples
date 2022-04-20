@@ -28,100 +28,96 @@ class FullPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(FullPage.title),
       ),
-body: InheritedContextualMenu(
-  buildMenu: (BuildContext context, ContextualMenuController controller, Offset primaryAnchor, Offset? secondaryAnchor) {
-    return DefaultTextSelectionToolbar(
-      primaryAnchor: primaryAnchor,
-      secondaryAnchor: secondaryAnchor,
-      buttonDatas: <ContextualMenuButtonData>[
-        ContextualMenuButtonData(
-          onPressed: () {
-            controller.hide();
-            Navigator.of(context).pop();
-          },
-          label: 'Back',
-        ),
-      ],
-    );
-  },
-  child: ContextualMenuGestureDetector(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        InheritedContextualMenu(
-          buildMenu: (BuildContext context, ContextualMenuController controller, Offset primaryAnchor, Offset? secondaryAnchor) {
-            return DefaultTextSelectionToolbar(
-              primaryAnchor: primaryAnchor,
-              secondaryAnchor: secondaryAnchor,
-              buttonDatas: <ContextualMenuButtonData>[
-                ContextualMenuButtonData(
-                  onPressed: () {
-                    controller.hide();
-                    Navigator.of(context).push(_showDialog(context, 'Image saved! (not really though)'));
-                  },
-                  label: 'Save',
-                ),
-              ],
-            );
-          },
-          child: ContextualMenuGestureDetector(
-            child: SizedBox(
-              width: 200.0,
-              height: 200.0,
-              child: Image.asset('flutter.jpg'),
-            ),
-         ),
-        ),
-        Container(height: 20.0),
-        TextField(
-          controller: _controller,
-          buildContextualMenu: (BuildContext context, ContextualMenuController controller, EditableTextState editableTextState, Offset primaryAnchor, Offset? secondaryAnchor) {
-            return TextSelectionToolbarButtonDatasBuilder(
-              editableTextState: editableTextState,
-              builder: (BuildContext context, List<ContextualMenuButtonData> buttonDatas) {
-                final TextEditingValue value = editableTextState.textEditingValue;
-                if (_isValidEmail(value.selection.textInside(value.text))) {
-                  buttonDatas.insert(0, ContextualMenuButtonData(
-                    label: 'Send email',
-                    onPressed: () {
-                      controller.hide();
-                      Navigator.of(context).push(_showDialog(context, 'You clicked send email'));
-                    },
-                  ));
-                }
+      body: ContextMenu(
+        buildContextMenu: (BuildContext context, ContextMenuController controller, Offset primaryAnchor, Offset? secondaryAnchor) {
+          return DefaultTextSelectionToolbar(
+            primaryAnchor: primaryAnchor,
+            secondaryAnchor: secondaryAnchor,
+            buttonDatas: <ContextualMenuButtonData>[
+              ContextualMenuButtonData(
+                onPressed: () {
+                  controller.dispose();
+                  Navigator.of(context).pop();
+                },
+                label: 'Back',
+              ),
+            ],
+          );
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ContextMenu(
+              buildContextMenu: (BuildContext context, ContextMenuController controller, Offset primaryAnchor, Offset? secondaryAnchor) {
                 return DefaultTextSelectionToolbar(
                   primaryAnchor: primaryAnchor,
                   secondaryAnchor: secondaryAnchor,
-                  // Build the default buttons, but make them look crazy.
-                  // Note that in a real project you may want to build
-                  // different buttons depending on the platform.
-                  children: buttonDatas.map((ContextualMenuButtonData buttonData) {
-                    assert(debugCheckHasCupertinoLocalizations(context));
-                    final CupertinoLocalizations localizations = CupertinoLocalizations.of(context);
-                    return CupertinoButton(
-                      borderRadius: null,
-                      color: const Color(0xffaaaa00),
-                      disabledColor: const Color(0xffaaaaff),
-                      onPressed: buttonData.onPressed,
-                      padding: const EdgeInsets.all(10.0),
-                      pressedOpacity: 0.7,
-                      child: SizedBox(
-                        width: 200.0,
-                        child: Text(
-                          CupertinoTextSelectionToolbarButton.getButtonLabel(buttonData, localizations),
-                        ),
-                      ),
-                    );
-                  }).toList(),
+                  buttonDatas: <ContextualMenuButtonData>[
+                    ContextualMenuButtonData(
+                      onPressed: () {
+                        controller.dispose();
+                        Navigator.of(context).push(_showDialog(context, 'Image saved! (not really though)'));
+                      },
+                      label: 'Save',
+                    ),
+                  ],
                 );
               },
-            );
-          },
+              child: SizedBox(
+                width: 200.0,
+                height: 200.0,
+                child: Image.asset('flutter.jpg'),
+              ),
+            ),
+            Container(height: 20.0),
+            TextField(
+              controller: _controller,
+              buildContextMenu: (BuildContext context, ContextMenuController controller, EditableTextState editableTextState, Offset primaryAnchor, Offset? secondaryAnchor) {
+                return TextSelectionToolbarButtonDatasBuilder(
+                  editableTextState: editableTextState,
+                  builder: (BuildContext context, List<ContextualMenuButtonData> buttonDatas) {
+                    final TextEditingValue value = editableTextState.textEditingValue;
+                    if (_isValidEmail(value.selection.textInside(value.text))) {
+                      buttonDatas.insert(0, ContextualMenuButtonData(
+                        label: 'Send email',
+                        onPressed: () {
+                          controller.dispose();
+                          Navigator.of(context).push(_showDialog(context, 'You clicked send email'));
+                        },
+                      ));
+                    }
+                    return DefaultTextSelectionToolbar(
+                      primaryAnchor: primaryAnchor,
+                      secondaryAnchor: secondaryAnchor,
+                      // Build the default buttons, but make them look crazy.
+                      // Note that in a real project you may want to build
+                      // different buttons depending on the platform.
+                      children: buttonDatas.map((ContextualMenuButtonData buttonData) {
+                        assert(debugCheckHasCupertinoLocalizations(context));
+                        final CupertinoLocalizations localizations = CupertinoLocalizations.of(context);
+                        return CupertinoButton(
+                          borderRadius: null,
+                          color: const Color(0xffaaaa00),
+                          disabledColor: const Color(0xffaaaaff),
+                          onPressed: buttonData.onPressed,
+                          padding: const EdgeInsets.all(10.0),
+                          pressedOpacity: 0.7,
+                          child: SizedBox(
+                            width: 200.0,
+                            child: Text(
+                              CupertinoTextSelectionToolbarButton.getButtonLabel(buttonData, localizations),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    );
+                  },
+                );
+              },
+            ),
+          ],
         ),
-      ],
-    ),
-  ),
-),
+      ),
     );
   }
 }
