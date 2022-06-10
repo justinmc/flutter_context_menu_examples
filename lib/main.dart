@@ -5,6 +5,7 @@ import 'crazy_buttons_page.dart';
 import 'email_button_page.dart';
 import 'field_types_page.dart';
 import 'full_page.dart';
+import 'global_selection_page.dart';
 import 'image_page.dart';
 import 'modified_action_page.dart';
 import 'reordered_buttons_page.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         FieldTypesPage.route: (BuildContext context) => FieldTypesPage(),
         FullPage.route: (BuildContext context) => FullPage(),
         ModifiedActionPage.route: (BuildContext context) => ModifiedActionPage(),
+        GlobalSelectionPage.route: (BuildContext context) => GlobalSelectionPage(),
       },
     );
   }
@@ -89,6 +91,11 @@ class MyHomePage extends StatelessWidget {
             route: FullPage.route,
             title: FullPage.title,
             subtitle: FullPage.subtitle,
+          ),
+          MyListItem(
+            route: GlobalSelectionPage.route,
+            title: GlobalSelectionPage.title,
+            subtitle: GlobalSelectionPage.subtitle,
           ),
         ],
       ),
