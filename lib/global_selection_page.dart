@@ -20,14 +20,14 @@ class GlobalSelectionPage extends StatelessWidget {
         title: const Text(GlobalSelectionPage.title),
       ),
       body: ContextMenu(
-        buildContextMenu: (BuildContext context, ContextMenuController controller, Offset primaryAnchor, Offset? secondaryAnchor) {
+        buildContextMenu: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
           return DefaultTextSelectionToolbar(
             primaryAnchor: primaryAnchor,
             secondaryAnchor: secondaryAnchor,
             buttonDatas: <ContextualMenuButtonData>[
               ContextualMenuButtonData(
                 onPressed: () {
-                  controller.dispose();
+                  ContextMenuController.hide();
                   Navigator.of(context).pop();
                 },
                 label: 'Back',
@@ -36,15 +36,20 @@ class GlobalSelectionPage extends StatelessWidget {
           );
         },
         child: Center(
-          child: SelectionArea(
-            child: SizedBox(
-              width: 100.0,
+          child: SizedBox(
+            width: 200.0,
+            child: SelectionArea(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Text('Row 1'),
-                  Text('Row 2'),
-                  Text('Row 3'),
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Container(height: 20.0),
+                  const Text('I am selectable.'),
+                  Container(height: 200.0),
+                  TextField(controller: _controller),
+                  Container(height: 100.0),
+                  const Text('I am selectable too.'),
+                  Container(height: 100.0),
+                  const SelectableText('I am SelectableText.'),
                 ],
               ),
             ),
@@ -52,43 +57,6 @@ class GlobalSelectionPage extends StatelessWidget {
         ),
       ),
     );
-    /*
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(GlobalSelectionPage.title),
-      ),
-      body: ContextMenu(
-        buildContextMenu: (BuildContext context, ContextMenuController controller, Offset primaryAnchor, Offset? secondaryAnchor) {
-          return DefaultTextSelectionToolbar(
-            primaryAnchor: primaryAnchor,
-            secondaryAnchor: secondaryAnchor,
-            buttonDatas: <ContextualMenuButtonData>[
-              ContextualMenuButtonData(
-                onPressed: () {
-                  controller.dispose();
-                  Navigator.of(context).pop();
-                },
-                label: 'Back',
-              ),
-            ],
-          );
-        },
-        child: SelectionArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Container(height: 20.0),
-              const Text('I am plain text'),
-              Container(height: 200.0),
-              TextField(controller: _controller),
-              Container(height: 100.0),
-              const Text('I am plain text'),
-            ],
-          ),
-        ),
-      ),
-    );
-    */
   }
 }
 
