@@ -29,14 +29,14 @@ class FullPage extends StatelessWidget {
         title: const Text(FullPage.title),
       ),
       body: ContextMenu(
-        buildContextMenu: (BuildContext context, ContextMenuController controller, Offset primaryAnchor, Offset? secondaryAnchor) {
+        buildContextMenu: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
           return DefaultTextSelectionToolbar(
             primaryAnchor: primaryAnchor,
             secondaryAnchor: secondaryAnchor,
             buttonDatas: <ContextualMenuButtonData>[
               ContextualMenuButtonData(
                 onPressed: () {
-                  controller.dispose();
+                  ContextMenuController.hide();
                   Navigator.of(context).pop();
                 },
                 label: 'Back',
@@ -48,14 +48,14 @@ class FullPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ContextMenu(
-              buildContextMenu: (BuildContext context, ContextMenuController controller, Offset primaryAnchor, Offset? secondaryAnchor) {
+              buildContextMenu: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
                 return DefaultTextSelectionToolbar(
                   primaryAnchor: primaryAnchor,
                   secondaryAnchor: secondaryAnchor,
                   buttonDatas: <ContextualMenuButtonData>[
                     ContextualMenuButtonData(
                       onPressed: () {
-                        controller.dispose();
+                        ContextMenuController.hide();
                         Navigator.of(context).push(_showDialog(context, 'Image saved! (not really though)'));
                       },
                       label: 'Save',
@@ -72,7 +72,7 @@ class FullPage extends StatelessWidget {
             Container(height: 20.0),
             TextField(
               controller: _controller,
-              buildContextMenu: (BuildContext context, ContextMenuController controller, EditableTextState editableTextState, Offset primaryAnchor, Offset? secondaryAnchor) {
+              buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
                 return TextSelectionToolbarButtonDatasBuilder(
                   editableTextState: editableTextState,
                   builder: (BuildContext context, List<ContextualMenuButtonData> buttonDatas) {
@@ -81,7 +81,7 @@ class FullPage extends StatelessWidget {
                       buttonDatas.insert(0, ContextualMenuButtonData(
                         label: 'Send email',
                         onPressed: () {
-                          controller.dispose();
+                          ContextMenuController.hide();
                           Navigator.of(context).push(_showDialog(context, 'You clicked send email'));
                         },
                       ));

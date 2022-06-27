@@ -21,14 +21,14 @@ class AnywherePage extends StatelessWidget {
         title: const Text(AnywherePage.title),
       ),
       body: ContextMenu(
-        buildContextMenu: (BuildContext context, ContextMenuController controller, Offset primaryAnchor, Offset? secondaryAnchor) {
+        buildContextMenu: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
           return DefaultTextSelectionToolbar(
             primaryAnchor: primaryAnchor,
             secondaryAnchor: secondaryAnchor,
             buttonDatas: <ContextualMenuButtonData>[
               ContextualMenuButtonData(
                 onPressed: () {
-                  controller.dispose();
+                  ContextMenuController.hide();
                   Navigator.of(context).pop();
                 },
                 label: 'Back',

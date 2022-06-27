@@ -42,7 +42,7 @@ class FieldTypesPage extends StatelessWidget {
           const SizedBox(height: 20.0),
           CupertinoTextField(
             controller: _cupertinoControllerFixed,
-            buildContextMenu: (BuildContext context, ContextMenuController controller, EditableTextState editableTextState, Offset primaryAnchor, Offset? secondaryAnchor) {
+            buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
               return DefaultTextSelectionToolbar(
                 primaryAnchor: primaryAnchor,
                 secondaryAnchor: secondaryAnchor,
@@ -63,7 +63,7 @@ class FieldTypesPage extends StatelessWidget {
               // EditableText has no built-in gesture detection for
               // selection. A wrapper would have to implement
               // TextSelectionGestureDetectorBuilderDelegate, etc.
-              buildContextMenu: (BuildContext context, ContextMenuController controller, EditableTextState editableTextState, Offset primaryAnchor, Offset? secondaryAnchor) {
+              buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
                 return DefaultTextSelectionToolbar(
                   primaryAnchor: primaryAnchor,
                   secondaryAnchor: secondaryAnchor,
