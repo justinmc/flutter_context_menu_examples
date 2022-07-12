@@ -35,15 +35,15 @@ class ModifiedActionPage extends StatelessWidget {
             buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
               return TextSelectionToolbarButtonDatasBuilder(
                 editableTextState: editableTextState,
-                builder: (BuildContext context, List<ContextualMenuButtonData> buttonDatas) {
+                builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
                   // Modify the copy buttonData to show a dialog after copying.
                   final int copyButtonIndex = buttonDatas.indexWhere(
-                    (ContextualMenuButtonData buttonData) {
-                      return buttonData.type == DefaultContextualMenuButtonType.copy;
+                    (ContextMenuButtonData buttonData) {
+                      return buttonData.type == ContextMenuButtonType.copy;
                     },
                   );
                   if (copyButtonIndex >= 0) {
-                    final ContextualMenuButtonData copyButtonData =
+                    final ContextMenuButtonData copyButtonData =
                         buttonDatas[copyButtonIndex];
                     buttonDatas[copyButtonIndex] = copyButtonData.copyWith(
                       onPressed: () {

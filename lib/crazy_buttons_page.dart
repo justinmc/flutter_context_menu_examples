@@ -31,14 +31,14 @@ class CrazyButtonsPage extends StatelessWidget {
             buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
               return TextSelectionToolbarButtonDatasBuilder(
                 editableTextState: editableTextState,
-                builder: (BuildContext context, List<ContextualMenuButtonData> buttonDatas) {
+                builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
                   return DefaultTextSelectionToolbar(
                     primaryAnchor: primaryAnchor,
                     secondaryAnchor: secondaryAnchor,
                     // Build the default buttons, but make them look crazy.
                     // Note that in a real project you may want to build
                     // different buttons depending on the platform.
-                    children: buttonDatas.map((ContextualMenuButtonData buttonData) {
+                    children: buttonDatas.map((ContextMenuButtonData buttonData) {
                       assert(debugCheckHasCupertinoLocalizations(context));
                       final CupertinoLocalizations localizations = CupertinoLocalizations.of(context);
                       return CupertinoButton(

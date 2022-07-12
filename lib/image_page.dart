@@ -36,8 +36,8 @@ class ImagePage extends StatelessWidget {
               return DefaultTextSelectionToolbar(
                 primaryAnchor: primaryAnchor,
                 secondaryAnchor: secondaryAnchor,
-                buttonDatas: <ContextualMenuButtonData>[
-                  ContextualMenuButtonData(
+                buttonDatas: <ContextMenuButtonData>[
+                  ContextMenuButtonData(
                     onPressed: () {
                       ContextMenuController.hide();
                       Navigator.of(context).push(_showDialog(context));

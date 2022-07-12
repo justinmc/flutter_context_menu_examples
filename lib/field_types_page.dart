@@ -7,7 +7,7 @@ class FieldTypesPage extends StatelessWidget {
   }) : super(key: key);
 
   static const String route = 'field-types';
-  static const String title = 'The Contextual Menu in Different Field Types';
+  static const String title = 'The Context Menu in Different Field Types';
   static const String subtitle = 'How contextual menus work in TextField, CupertinoTextField, and EditableText';
 
   final TextEditingController _controller = TextEditingController(

@@ -7,8 +7,8 @@ class AnywherePage extends StatelessWidget {
   }) : super(key: key);
 
   static const String route = 'anywhere';
-  static const String title = 'Contextual Menu Anywhere Example';
-  static const String subtitle = 'A ContextualMenu outside of a text field';
+  static const String title = 'Context Menu Anywhere Example';
+  static const String subtitle = 'A ContextMenu outside of a text field';
 
   final TextEditingController _controller = TextEditingController(
     text: 'Right click anywhere outside of a field to show a custom menu.',
@@ -25,8 +25,8 @@ class AnywherePage extends StatelessWidget {
           return DefaultTextSelectionToolbar(
             primaryAnchor: primaryAnchor,
             secondaryAnchor: secondaryAnchor,
-            buttonDatas: <ContextualMenuButtonData>[
-              ContextualMenuButtonData(
+            buttonDatas: <ContextMenuButtonData>[
+              ContextMenuButtonData(
                 onPressed: () {
                   ContextMenuController.hide();
                   Navigator.of(context).pop();

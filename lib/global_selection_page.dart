@@ -24,8 +24,8 @@ class GlobalSelectionPage extends StatelessWidget {
           return DefaultTextSelectionToolbar(
             primaryAnchor: primaryAnchor,
             secondaryAnchor: secondaryAnchor,
-            buttonDatas: <ContextualMenuButtonData>[
-              ContextualMenuButtonData(
+            buttonDatas: <ContextMenuButtonData>[
+              ContextMenuButtonData(
                 onPressed: () {
                   ContextMenuController.hide();
                   Navigator.of(context).pop();
@@ -39,6 +39,22 @@ class GlobalSelectionPage extends StatelessWidget {
           child: SizedBox(
             width: 200.0,
             child: SelectionArea(
+              buildContextMenu: (BuildContext context, List<ContextMenuButtonData> buttonDatas, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+                return DefaultTextSelectionToolbar(
+                  primaryAnchor: primaryAnchor,
+                  secondaryAnchor: secondaryAnchor,
+                  buttonDatas: <ContextMenuButtonData>[
+                    ...buttonDatas,
+                    ContextMenuButtonData(
+                      onPressed: () {
+                        ContextMenuController.hide();
+                        Navigator.of(context).pop();
+                      },
+                      label: 'Back',
+                    ),
+                  ],
+                );
+              },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
@@ -59,4 +75,3 @@ class GlobalSelectionPage extends StatelessWidget {
     );
   }
 }
-

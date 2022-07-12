@@ -37,22 +37,22 @@ class ReorderedButtonsPage extends StatelessWidget {
             buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
               return TextSelectionToolbarButtonDatasBuilder(
                 editableTextState: editableTextState,
-                builder: (BuildContext context, List<ContextualMenuButtonData> buttonDatas) {
+                builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
                   // Reorder the button datas by type.
-                  final HashMap<DefaultContextualMenuButtonType, ContextualMenuButtonData> buttonDatasMap =
-                      HashMap<DefaultContextualMenuButtonType, ContextualMenuButtonData>();
-                  for (ContextualMenuButtonData buttonData in buttonDatas) {
+                  final HashMap<ContextMenuButtonType, ContextMenuButtonData> buttonDatasMap =
+                      HashMap<ContextMenuButtonType, ContextMenuButtonData>();
+                  for (ContextMenuButtonData buttonData in buttonDatas) {
                     buttonDatasMap[buttonData.type] = buttonData;
                   }
-                  final List<ContextualMenuButtonData> reorderedButtonDatas = <ContextualMenuButtonData>[
-                    if (buttonDatasMap.containsKey(DefaultContextualMenuButtonType.selectAll))
-                      buttonDatasMap[DefaultContextualMenuButtonType.selectAll]!,
-                    if (buttonDatasMap.containsKey(DefaultContextualMenuButtonType.paste))
-                      buttonDatasMap[DefaultContextualMenuButtonType.paste]!,
-                    if (buttonDatasMap.containsKey(DefaultContextualMenuButtonType.copy))
-                      buttonDatasMap[DefaultContextualMenuButtonType.copy]!,
-                    if (buttonDatasMap.containsKey(DefaultContextualMenuButtonType.cut))
-                      buttonDatasMap[DefaultContextualMenuButtonType.cut]!,
+                  final List<ContextMenuButtonData> reorderedButtonDatas = <ContextMenuButtonData>[
+                    if (buttonDatasMap.containsKey(ContextMenuButtonType.selectAll))
+                      buttonDatasMap[ContextMenuButtonType.selectAll]!,
+                    if (buttonDatasMap.containsKey(ContextMenuButtonType.paste))
+                      buttonDatasMap[ContextMenuButtonType.paste]!,
+                    if (buttonDatasMap.containsKey(ContextMenuButtonType.copy))
+                      buttonDatasMap[ContextMenuButtonType.copy]!,
+                    if (buttonDatasMap.containsKey(ContextMenuButtonType.cut))
+                      buttonDatasMap[ContextMenuButtonType.cut]!,
                   ];
                   return DefaultTextSelectionToolbar(
                     primaryAnchor: primaryAnchor,

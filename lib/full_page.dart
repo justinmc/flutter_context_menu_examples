@@ -33,8 +33,8 @@ class FullPage extends StatelessWidget {
           return DefaultTextSelectionToolbar(
             primaryAnchor: primaryAnchor,
             secondaryAnchor: secondaryAnchor,
-            buttonDatas: <ContextualMenuButtonData>[
-              ContextualMenuButtonData(
+            buttonDatas: <ContextMenuButtonData>[
+              ContextMenuButtonData(
                 onPressed: () {
                   ContextMenuController.hide();
                   Navigator.of(context).pop();
@@ -52,8 +52,8 @@ class FullPage extends StatelessWidget {
                 return DefaultTextSelectionToolbar(
                   primaryAnchor: primaryAnchor,
                   secondaryAnchor: secondaryAnchor,
-                  buttonDatas: <ContextualMenuButtonData>[
-                    ContextualMenuButtonData(
+                  buttonDatas: <ContextMenuButtonData>[
+                    ContextMenuButtonData(
                       onPressed: () {
                         ContextMenuController.hide();
                         Navigator.of(context).push(_showDialog(context, 'Image saved! (not really though)'));
@@ -75,10 +75,10 @@ class FullPage extends StatelessWidget {
               buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
                 return TextSelectionToolbarButtonDatasBuilder(
                   editableTextState: editableTextState,
-                  builder: (BuildContext context, List<ContextualMenuButtonData> buttonDatas) {
+                  builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
                     final TextEditingValue value = editableTextState.textEditingValue;
                     if (_isValidEmail(value.selection.textInside(value.text))) {
-                      buttonDatas.insert(0, ContextualMenuButtonData(
+                      buttonDatas.insert(0, ContextMenuButtonData(
                         label: 'Send email',
                         onPressed: () {
                           ContextMenuController.hide();
@@ -92,7 +92,7 @@ class FullPage extends StatelessWidget {
                       // Build the default buttons, but make them look crazy.
                       // Note that in a real project you may want to build
                       // different buttons depending on the platform.
-                      children: buttonDatas.map((ContextualMenuButtonData buttonData) {
+                      children: buttonDatas.map((ContextMenuButtonData buttonData) {
                         assert(debugCheckHasCupertinoLocalizations(context));
                         final CupertinoLocalizations localizations = CupertinoLocalizations.of(context);
                         return CupertinoButton(
