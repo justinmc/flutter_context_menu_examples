@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'anywhere_page.dart';
 import 'crazy_buttons_page.dart';
+import 'default_values_page.dart';
 import 'email_button_page.dart';
 import 'field_types_page.dart';
 import 'full_page.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         FullPage.route: (BuildContext context) => FullPage(),
         ModifiedActionPage.route: (BuildContext context) => ModifiedActionPage(),
         GlobalSelectionPage.route: (BuildContext context) => GlobalSelectionPage(),
+        DefaultValuesPage.route: (BuildContext context) => DefaultValuesPage(),
       },
     );
   }
@@ -92,6 +94,11 @@ class MyHomePage extends StatelessWidget {
             route: FieldTypesPage.route,
             title: FieldTypesPage.title,
             subtitle: FieldTypesPage.subtitle,
+          ),
+          MyListItem(
+            route: DefaultValuesPage.route,
+            title: DefaultValuesPage.title,
+            subtitle: DefaultValuesPage.subtitle,
           ),
           MyListItem(
             route: FullPage.route,
