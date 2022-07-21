@@ -33,8 +33,8 @@ class EmailButtonPage extends StatelessWidget {
           Container(height: 20.0),
           TextField(
             controller: _controller,
-            buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-              return TextSelectionToolbarButtonDatasBuilder(
+            contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+              return EditableTextContextMenuButtonDatasBuilder(
                 editableTextState: editableTextState,
                 builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
                   final TextEditingValue value = editableTextState.textEditingValue;

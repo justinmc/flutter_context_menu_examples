@@ -32,8 +32,8 @@ class ModifiedActionPage extends StatelessWidget {
         children: <Widget>[
           TextField(
             controller: _controller,
-            buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-              return TextSelectionToolbarButtonDatasBuilder(
+            contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+              return EditableTextContextMenuButtonDatasBuilder(
                 editableTextState: editableTextState,
                 builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
                   // Modify the copy buttonData to show a dialog after copying.

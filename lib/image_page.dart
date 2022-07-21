@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'context_menu_region.dart';
+
 class ImagePage extends StatelessWidget {
   ImagePage({
     Key? key,
@@ -31,8 +33,8 @@ class ImagePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(height: 200.0),
-          ContextMenu(
-            buildContextMenu: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+          ContextMenuRegion(
+            contextMenuBuilder: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
               return DefaultTextSelectionToolbar(
                 primaryAnchor: primaryAnchor,
                 secondaryAnchor: secondaryAnchor,

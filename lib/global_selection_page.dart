@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'context_menu_region.dart';
+
 class GlobalSelectionPage extends StatelessWidget {
   GlobalSelectionPage({
     Key? key,
@@ -19,8 +21,8 @@ class GlobalSelectionPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(GlobalSelectionPage.title),
       ),
-      body: ContextMenu(
-        buildContextMenu: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+      body: ContextMenuRegion(
+        contextMenuBuilder: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
           return DefaultTextSelectionToolbar(
             primaryAnchor: primaryAnchor,
             secondaryAnchor: secondaryAnchor,
@@ -39,7 +41,7 @@ class GlobalSelectionPage extends StatelessWidget {
           child: SizedBox(
             width: 200.0,
             child: SelectionArea(
-              buildContextMenu: (BuildContext context, List<ContextMenuButtonData> buttonDatas, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+              contextMenuBuilder: (BuildContext context, List<ContextMenuButtonData> buttonDatas, Offset primaryAnchor, [Offset? secondaryAnchor]) {
                 return DefaultTextSelectionToolbar(
                   primaryAnchor: primaryAnchor,
                   secondaryAnchor: secondaryAnchor,
@@ -55,8 +57,7 @@ class GlobalSelectionPage extends StatelessWidget {
                   ],
                 );
               },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+              child: ListView(
                 children: <Widget>[
                   Container(height: 20.0),
                   const Text('I am selectable.'),

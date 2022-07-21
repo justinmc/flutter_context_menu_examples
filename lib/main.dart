@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
       routes: <String, Widget Function(BuildContext)>{
         '/': (BuildContext context) => const MyHomePage(),
         AnywherePage.route: (BuildContext context) => AnywherePage(),
-        GlobalSelectionPage.route: (BuildContext context) => GlobalSelectionPage(),
         CrazyButtonsPage.route: (BuildContext context) => CrazyButtonsPage(),
         ReorderedButtonsPage.route: (BuildContext context) => ReorderedButtonsPage(),
         EmailButtonPage.route: (BuildContext context) => EmailButtonPage(),

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'context_menu_region.dart';
+
 class AnywherePage extends StatelessWidget {
   AnywherePage({
     Key? key,
@@ -20,8 +22,8 @@ class AnywherePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(AnywherePage.title),
       ),
-      body: ContextMenu(
-        buildContextMenu: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+      body: ContextMenuRegion(
+        contextMenuBuilder: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
           return DefaultTextSelectionToolbar(
             primaryAnchor: primaryAnchor,
             secondaryAnchor: secondaryAnchor,

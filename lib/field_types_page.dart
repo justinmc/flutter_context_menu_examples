@@ -23,7 +23,7 @@ class FieldTypesPage extends StatelessWidget {
   );
 
   final TextEditingController _editableController = TextEditingController(
-    text: "EditableText doesn't show any selection menu by itself, even when buildContextMenu is passed.",
+    text: "EditableText doesn't show any selection menu by itself, even when contextMenuBuilder is passed.",
   );
 
   @override
@@ -42,7 +42,7 @@ class FieldTypesPage extends StatelessWidget {
           const SizedBox(height: 20.0),
           CupertinoTextField(
             controller: _cupertinoControllerFixed,
-            buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+            contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
               return DefaultTextSelectionToolbar(
                 primaryAnchor: primaryAnchor,
                 secondaryAnchor: secondaryAnchor,
@@ -59,11 +59,11 @@ class FieldTypesPage extends StatelessWidget {
               style: Typography.material2018().black.subtitle1!,
               cursorColor: Colors.blue,
               backgroundCursorColor: Colors.white,
-              // buildContextMenu doesn't do anything here!
+              // contextMenuBuilder doesn't do anything here!
               // EditableText has no built-in gesture detection for
               // selection. A wrapper would have to implement
               // TextSelectionGestureDetectorBuilderDelegate, etc.
-              buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+              contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
                 return DefaultTextSelectionToolbar(
                   primaryAnchor: primaryAnchor,
                   secondaryAnchor: secondaryAnchor,

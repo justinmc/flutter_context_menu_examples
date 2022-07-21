@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'context_menu_region.dart';
+
 class FullPage extends StatelessWidget {
   FullPage({
     Key? key,
@@ -28,8 +30,8 @@ class FullPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(FullPage.title),
       ),
-      body: ContextMenu(
-        buildContextMenu: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+      body: ContextMenuRegion(
+        contextMenuBuilder: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
           return DefaultTextSelectionToolbar(
             primaryAnchor: primaryAnchor,
             secondaryAnchor: secondaryAnchor,
@@ -47,8 +49,8 @@ class FullPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ContextMenu(
-              buildContextMenu: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+            ContextMenuRegion(
+              contextMenuBuilder: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
                 return DefaultTextSelectionToolbar(
                   primaryAnchor: primaryAnchor,
                   secondaryAnchor: secondaryAnchor,
@@ -72,8 +74,8 @@ class FullPage extends StatelessWidget {
             Container(height: 20.0),
             TextField(
               controller: _controller,
-              buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-                return TextSelectionToolbarButtonDatasBuilder(
+              contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+                return EditableTextContextMenuButtonDatasBuilder(
                   editableTextState: editableTextState,
                   builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
                     final TextEditingValue value = editableTextState.textEditingValue;

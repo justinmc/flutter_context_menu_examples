@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'context_menu_region.dart';
+
 class DefaultValuesPage extends StatelessWidget {
   DefaultValuesPage({
     Key? key,
@@ -7,18 +9,18 @@ class DefaultValuesPage extends StatelessWidget {
 
   static const String route = 'default-values';
   static const String title = 'Default API Values Example';
-  static const String subtitle = 'Shows what happens when you pass various things into buildContextMenu.';
+  static const String subtitle = 'Shows what happens when you pass various things into contextMenuBuilder.';
 
   final TextEditingController _controllerNone = TextEditingController(
-    text: "When buildContextMenu isn't given at all.",
+    text: "When contextMenuBuilder isn't given at all.",
   );
 
   final TextEditingController _controllerNull = TextEditingController(
-    text: "When buildContextMenu is explicitly given null.",
+    text: "When contextMenuBuilder is explicitly given null.",
   );
 
   final TextEditingController _controllerCustom = TextEditingController(
-    text: "When something custom is passed to buildContextMenu.",
+    text: "When something custom is passed to contextMenuBuilder.",
   );
 
   DialogRoute _showDialog (BuildContext context, String message) {
@@ -35,8 +37,8 @@ class DefaultValuesPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(DefaultValuesPage.title),
       ),
-      body: ContextMenu(
-        buildContextMenu: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+      body: ContextMenuRegion(
+        contextMenuBuilder: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
           return DefaultTextSelectionToolbar(
             primaryAnchor: primaryAnchor,
             secondaryAnchor: secondaryAnchor,
@@ -59,12 +61,12 @@ class DefaultValuesPage extends StatelessWidget {
             ),
             TextField(
               controller: _controllerNull,
-              buildContextMenu: null,
+              contextMenuBuilder: null,
             ),
             TextField(
               controller: _controllerCustom,
-              buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-                return TextSelectionToolbarButtonDatasBuilder(
+              contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+                return EditableTextContextMenuButtonDatasBuilder(
                   editableTextState: editableTextState,
                   builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
                     return DefaultTextSelectionToolbar(

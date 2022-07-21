@@ -34,8 +34,8 @@ class ReorderedButtonsPage extends StatelessWidget {
           const SizedBox(height: 20.0),
           TextField(
             controller: _controllerReordered,
-            buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-              return TextSelectionToolbarButtonDatasBuilder(
+            contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+              return EditableTextContextMenuButtonDatasBuilder(
                 editableTextState: editableTextState,
                 builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
                   // Reorder the button datas by type.

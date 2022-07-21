@@ -11,25 +11,27 @@ class CrazyButtonsPage extends StatelessWidget {
   static const String subtitle = 'The usual buttons, but crazy looking';
 
   final TextEditingController _controller = TextEditingController(
-    text: 'Show the menu to see weird-looking buttons.',
+    text: 'Show the menu to see weird-looking buttons.\nmultiline text\nmultiline text\nmultiline text\nmultiline text\nmultiline text',
   );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        /*
       appBar: AppBar(
         title: const Text(CrazyButtonsPage.title),
       ),
+      */
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(height: 20.0),
           TextField(
             controller: _controller,
-            maxLines: 2,
-            minLines: 2,
-            buildContextMenu: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-              return TextSelectionToolbarButtonDatasBuilder(
+            maxLines: 4,
+            minLines: 4,
+            contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
+              return EditableTextContextMenuButtonDatasBuilder(
                 editableTextState: editableTextState,
                 builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
                   return DefaultTextSelectionToolbar(
