@@ -32,13 +32,13 @@ class FullPage extends StatelessWidget {
       ),
       body: ContextMenuRegion(
         contextMenuBuilder: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-          return DefaultTextSelectionToolbar(
+          return AdaptiveTextSelectionToolbarButtonItems(
             primaryAnchor: primaryAnchor,
             secondaryAnchor: secondaryAnchor,
-            buttonDatas: <ContextMenuButtonData>[
-              ContextMenuButtonData(
+            buttonItems: <ContextMenuButtonItem>[
+              ContextMenuButtonItem(
                 onPressed: () {
-                  ContextMenuController.hide();
+                  ContextMenuController.removeAny();
                   Navigator.of(context).pop();
                 },
                 label: 'Back',
@@ -51,13 +51,13 @@ class FullPage extends StatelessWidget {
           children: <Widget>[
             ContextMenuRegion(
               contextMenuBuilder: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-                return DefaultTextSelectionToolbar(
+                return AdaptiveTextSelectionToolbarButtonItems(
                   primaryAnchor: primaryAnchor,
                   secondaryAnchor: secondaryAnchor,
-                  buttonDatas: <ContextMenuButtonData>[
-                    ContextMenuButtonData(
+                  buttonItems: <ContextMenuButtonItem>[
+                    ContextMenuButtonItem(
                       onPressed: () {
-                        ContextMenuController.hide();
+                        ContextMenuController.removeAny();
                         Navigator.of(context).push(_showDialog(context, 'Image saved! (not really though)'));
                       },
                       label: 'Save',
@@ -75,39 +75,37 @@ class FullPage extends StatelessWidget {
             TextField(
               controller: _controller,
               contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-                return EditableTextContextMenuButtonDatasBuilder(
+                return EditableTextContextMenuButtonItemsBuilder(
                   editableTextState: editableTextState,
-                  builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
+                  builder: (BuildContext context, List<ContextMenuButtonItem> buttonItems) {
                     final TextEditingValue value = editableTextState.textEditingValue;
                     if (_isValidEmail(value.selection.textInside(value.text))) {
-                      buttonDatas.insert(0, ContextMenuButtonData(
+                      buttonItems.insert(0, ContextMenuButtonItem(
                         label: 'Send email',
                         onPressed: () {
-                          ContextMenuController.hide();
+                          ContextMenuController.removeAny();
                           Navigator.of(context).push(_showDialog(context, 'You clicked send email'));
                         },
                       ));
                     }
-                    return DefaultTextSelectionToolbar(
+                    return AdaptiveTextSelectionToolbar(
                       primaryAnchor: primaryAnchor,
                       secondaryAnchor: secondaryAnchor,
                       // Build the default buttons, but make them look crazy.
                       // Note that in a real project you may want to build
                       // different buttons depending on the platform.
-                      children: buttonDatas.map((ContextMenuButtonData buttonData) {
-                        assert(debugCheckHasCupertinoLocalizations(context));
-                        final CupertinoLocalizations localizations = CupertinoLocalizations.of(context);
+                      children: buttonItems.map((ContextMenuButtonItem buttonItem) {
                         return CupertinoButton(
                           borderRadius: null,
                           color: const Color(0xffaaaa00),
                           disabledColor: const Color(0xffaaaaff),
-                          onPressed: buttonData.onPressed,
+                          onPressed: buttonItem.onPressed,
                           padding: const EdgeInsets.all(10.0),
                           pressedOpacity: 0.7,
                           child: SizedBox(
                             width: 200.0,
                             child: Text(
-                              CupertinoTextSelectionToolbarButton.getButtonLabel(buttonData, localizations),
+                              CupertinoTextSelectionToolbarButtonsBuilder.getButtonLabel(context, buttonItem),
                             ),
                           ),
                         );

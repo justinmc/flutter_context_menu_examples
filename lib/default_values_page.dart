@@ -39,13 +39,13 @@ class DefaultValuesPage extends StatelessWidget {
       ),
       body: ContextMenuRegion(
         contextMenuBuilder: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-          return DefaultTextSelectionToolbar(
+          return AdaptiveTextSelectionToolbarButtonItems(
             primaryAnchor: primaryAnchor,
             secondaryAnchor: secondaryAnchor,
-            buttonDatas: <ContextMenuButtonData>[
-              ContextMenuButtonData(
+            buttonItems: <ContextMenuButtonItem>[
+              ContextMenuButtonItem(
                 onPressed: () {
-                  ContextMenuController.hide();
+                  ContextMenuController.removeAny();
                   Navigator.of(context).pop();
                 },
                 label: 'Back',
@@ -66,21 +66,21 @@ class DefaultValuesPage extends StatelessWidget {
             TextField(
               controller: _controllerCustom,
               contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-                return EditableTextContextMenuButtonDatasBuilder(
+                return EditableTextContextMenuButtonItemsBuilder(
                   editableTextState: editableTextState,
-                  builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
-                    return DefaultTextSelectionToolbar(
+                  builder: (BuildContext context, List<ContextMenuButtonItem> buttonItems) {
+                    return AdaptiveTextSelectionToolbarButtonItems(
                       primaryAnchor: primaryAnchor,
                       secondaryAnchor: secondaryAnchor,
-                      buttonDatas: <ContextMenuButtonData>[
-                        ContextMenuButtonData(
+                      buttonItems: <ContextMenuButtonItem>[
+                        ContextMenuButtonItem(
                           label: 'Custom button',
                           onPressed: () {
-                            ContextMenuController.hide();
+                            ContextMenuController.removeAny();
                             Navigator.of(context).push(_showDialog(context, 'You clicked the custom button.'));
                           },
                         ),
-                        ...buttonDatas,
+                        ...buttonItems,
                       ],
                     );
                   },

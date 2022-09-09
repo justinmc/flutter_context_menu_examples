@@ -24,13 +24,13 @@ class AnywherePage extends StatelessWidget {
       ),
       body: ContextMenuRegion(
         contextMenuBuilder: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-          return DefaultTextSelectionToolbar(
+          return AdaptiveTextSelectionToolbarButtonItems(
             primaryAnchor: primaryAnchor,
             secondaryAnchor: secondaryAnchor,
-            buttonDatas: <ContextMenuButtonData>[
-              ContextMenuButtonData(
+            buttonItems: <ContextMenuButtonItem>[
+              ContextMenuButtonItem(
                 onPressed: () {
-                  ContextMenuController.hide();
+                  ContextMenuController.removeAny();
                   Navigator.of(context).pop();
                 },
                 label: 'Back',

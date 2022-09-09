@@ -34,23 +34,23 @@ class EmailButtonPage extends StatelessWidget {
           TextField(
             controller: _controller,
             contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-              return EditableTextContextMenuButtonDatasBuilder(
+              return EditableTextContextMenuButtonItemsBuilder(
                 editableTextState: editableTextState,
-                builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
+                builder: (BuildContext context, List<ContextMenuButtonItem> buttonItems) {
                   final TextEditingValue value = editableTextState.textEditingValue;
                   if (_isValidEmail(value.selection.textInside(value.text))) {
-                    buttonDatas.insert(0, ContextMenuButtonData(
+                    buttonItems.insert(0, ContextMenuButtonItem(
                       label: 'Send email',
                       onPressed: () {
-                        ContextMenuController.hide();
+                        ContextMenuController.removeAny();
                         Navigator.of(context).push(_showDialog(context));
                       },
                     ));
                   }
-                  return DefaultTextSelectionToolbar(
+                  return AdaptiveTextSelectionToolbarButtonItems(
                     primaryAnchor: primaryAnchor,
                     secondaryAnchor: secondaryAnchor,
-                    buttonDatas: buttonDatas,
+                    buttonItems: buttonItems,
                   );
                 },
               );

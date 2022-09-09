@@ -43,7 +43,7 @@ class FieldTypesPage extends StatelessWidget {
           CupertinoTextField(
             controller: _cupertinoControllerFixed,
             contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-              return DefaultTextSelectionToolbar(
+              return AdaptiveTextSelectionToolbarEditableText(
                 primaryAnchor: primaryAnchor,
                 secondaryAnchor: secondaryAnchor,
                 editableTextState: editableTextState,
@@ -64,7 +64,7 @@ class FieldTypesPage extends StatelessWidget {
               // selection. A wrapper would have to implement
               // TextSelectionGestureDetectorBuilderDelegate, etc.
               contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-                return DefaultTextSelectionToolbar(
+                return AdaptiveTextSelectionToolbarEditableText(
                   primaryAnchor: primaryAnchor,
                   secondaryAnchor: secondaryAnchor,
                   editableTextState: editableTextState,

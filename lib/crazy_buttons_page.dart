@@ -17,11 +17,9 @@ class CrazyButtonsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        /*
       appBar: AppBar(
         title: const Text(CrazyButtonsPage.title),
       ),
-      */
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -31,29 +29,27 @@ class CrazyButtonsPage extends StatelessWidget {
             maxLines: 4,
             minLines: 4,
             contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-              return EditableTextContextMenuButtonDatasBuilder(
+              return EditableTextContextMenuButtonItemsBuilder(
                 editableTextState: editableTextState,
-                builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
-                  return DefaultTextSelectionToolbar(
+                builder: (BuildContext context, List<ContextMenuButtonItem> buttonItems) {
+                  return AdaptiveTextSelectionToolbar(
                     primaryAnchor: primaryAnchor,
                     secondaryAnchor: secondaryAnchor,
                     // Build the default buttons, but make them look crazy.
                     // Note that in a real project you may want to build
                     // different buttons depending on the platform.
-                    children: buttonDatas.map((ContextMenuButtonData buttonData) {
-                      assert(debugCheckHasCupertinoLocalizations(context));
-                      final CupertinoLocalizations localizations = CupertinoLocalizations.of(context);
+                    children: buttonItems.map((ContextMenuButtonItem buttonItem) {
                       return CupertinoButton(
                         borderRadius: null,
                         color: const Color(0xffaaaa00),
                         disabledColor: const Color(0xffaaaaff),
-                        onPressed: buttonData.onPressed,
+                        onPressed: buttonItem.onPressed,
                         padding: const EdgeInsets.all(10.0),
                         pressedOpacity: 0.7,
                         child: SizedBox(
                           width: 200.0,
                           child: Text(
-                            CupertinoTextSelectionToolbarButton.getButtonLabel(buttonData, localizations),
+                            CupertinoTextSelectionToolbarButtonsBuilder.getButtonLabel(context, buttonItem),
                           ),
                         ),
                       );

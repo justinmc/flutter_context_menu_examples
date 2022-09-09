@@ -35,29 +35,29 @@ class ReorderedButtonsPage extends StatelessWidget {
           TextField(
             controller: _controllerReordered,
             contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-              return EditableTextContextMenuButtonDatasBuilder(
+              return EditableTextContextMenuButtonItemsBuilder(
                 editableTextState: editableTextState,
-                builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
+                builder: (BuildContext context, List<ContextMenuButtonItem> buttonItems) {
                   // Reorder the button datas by type.
-                  final HashMap<ContextMenuButtonType, ContextMenuButtonData> buttonDatasMap =
-                      HashMap<ContextMenuButtonType, ContextMenuButtonData>();
-                  for (ContextMenuButtonData buttonData in buttonDatas) {
-                    buttonDatasMap[buttonData.type] = buttonData;
+                  final HashMap<ContextMenuButtonType, ContextMenuButtonItem> buttonItemsMap =
+                      HashMap<ContextMenuButtonType, ContextMenuButtonItem>();
+                  for (ContextMenuButtonItem buttonItem in buttonItems) {
+                    buttonItemsMap[buttonItem.type] = buttonItem;
                   }
-                  final List<ContextMenuButtonData> reorderedButtonDatas = <ContextMenuButtonData>[
-                    if (buttonDatasMap.containsKey(ContextMenuButtonType.selectAll))
-                      buttonDatasMap[ContextMenuButtonType.selectAll]!,
-                    if (buttonDatasMap.containsKey(ContextMenuButtonType.paste))
-                      buttonDatasMap[ContextMenuButtonType.paste]!,
-                    if (buttonDatasMap.containsKey(ContextMenuButtonType.copy))
-                      buttonDatasMap[ContextMenuButtonType.copy]!,
-                    if (buttonDatasMap.containsKey(ContextMenuButtonType.cut))
-                      buttonDatasMap[ContextMenuButtonType.cut]!,
+                  final List<ContextMenuButtonItem> reorderedButtonItems = <ContextMenuButtonItem>[
+                    if (buttonItemsMap.containsKey(ContextMenuButtonType.selectAll))
+                      buttonItemsMap[ContextMenuButtonType.selectAll]!,
+                    if (buttonItemsMap.containsKey(ContextMenuButtonType.paste))
+                      buttonItemsMap[ContextMenuButtonType.paste]!,
+                    if (buttonItemsMap.containsKey(ContextMenuButtonType.copy))
+                      buttonItemsMap[ContextMenuButtonType.copy]!,
+                    if (buttonItemsMap.containsKey(ContextMenuButtonType.cut))
+                      buttonItemsMap[ContextMenuButtonType.cut]!,
                   ];
-                  return DefaultTextSelectionToolbar(
+                  return AdaptiveTextSelectionToolbarButtonItems(
                     primaryAnchor: primaryAnchor,
                     secondaryAnchor: secondaryAnchor,
-                    buttonDatas: reorderedButtonDatas,
+                    buttonItems: reorderedButtonItems,
                   );
                 },
               );

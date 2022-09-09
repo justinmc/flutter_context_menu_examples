@@ -33,29 +33,29 @@ class ModifiedActionPage extends StatelessWidget {
           TextField(
             controller: _controller,
             contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-              return EditableTextContextMenuButtonDatasBuilder(
+              return EditableTextContextMenuButtonItemsBuilder(
                 editableTextState: editableTextState,
-                builder: (BuildContext context, List<ContextMenuButtonData> buttonDatas) {
-                  // Modify the copy buttonData to show a dialog after copying.
-                  final int copyButtonIndex = buttonDatas.indexWhere(
-                    (ContextMenuButtonData buttonData) {
-                      return buttonData.type == ContextMenuButtonType.copy;
+                builder: (BuildContext context, List<ContextMenuButtonItem> buttonItems) {
+                  // Modify the copy buttonItem to show a dialog after copying.
+                  final int copyButtonIndex = buttonItems.indexWhere(
+                    (ContextMenuButtonItem buttonItem) {
+                      return buttonItem.type == ContextMenuButtonType.copy;
                     },
                   );
                   if (copyButtonIndex >= 0) {
-                    final ContextMenuButtonData copyButtonData =
-                        buttonDatas[copyButtonIndex];
-                    buttonDatas[copyButtonIndex] = copyButtonData.copyWith(
+                    final ContextMenuButtonItem copyButtonItem =
+                        buttonItems[copyButtonIndex];
+                    buttonItems[copyButtonIndex] = copyButtonItem.copyWith(
                       onPressed: () {
-                        copyButtonData.onPressed();
+                        copyButtonItem.onPressed();
                         Navigator.of(context).push(_showDialog(context));
                       },
                     );
                   }
-                  return DefaultTextSelectionToolbar(
+                  return AdaptiveTextSelectionToolbarButtonItems(
                     primaryAnchor: primaryAnchor,
                     secondaryAnchor: secondaryAnchor,
-                    buttonDatas: buttonDatas,
+                    buttonItems: buttonItems,
                   );
                 },
               );

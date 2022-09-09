@@ -35,13 +35,13 @@ class ImagePage extends StatelessWidget {
           Container(height: 200.0),
           ContextMenuRegion(
             contextMenuBuilder: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-              return DefaultTextSelectionToolbar(
+              return AdaptiveTextSelectionToolbarButtonItems(
                 primaryAnchor: primaryAnchor,
                 secondaryAnchor: secondaryAnchor,
-                buttonDatas: <ContextMenuButtonData>[
-                  ContextMenuButtonData(
+                buttonItems: <ContextMenuButtonItem>[
+                  ContextMenuButtonItem(
                     onPressed: () {
-                      ContextMenuController.hide();
+                      ContextMenuController.removeAny();
                       Navigator.of(context).push(_showDialog(context));
                     },
                     label: 'Save',
