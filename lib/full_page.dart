@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import 'constants.dart';
 import 'context_menu_region.dart';
 import 'is_valid_email.dart';
 
@@ -12,6 +14,7 @@ class FullPage extends StatelessWidget {
   static const String route = 'full';
   static const String title = 'Combined Example';
   static const String subtitle = 'Combining several different types of custom menus.';
+  static const String url = '$kCodeUrl/full_page.dart';
 
   final TextEditingController _controller = TextEditingController(
     text: 'Custom menus everywhere. me@example.com',
@@ -30,6 +33,16 @@ class FullPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(FullPage.title),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.code),
+            onPressed: () async {
+              if (!await launchUrl(Uri.parse(url))) {
+                throw 'Could not launch $url';
+              }
+            },
+          ),
+        ],
       ),
       body: ContextMenuRegion(
         contextMenuBuilder: (BuildContext context, Offset offset) {

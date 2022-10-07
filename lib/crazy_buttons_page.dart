@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'constants.dart';
 
 class CrazyButtonsPage extends StatelessWidget {
   CrazyButtonsPage({
@@ -14,11 +17,23 @@ class CrazyButtonsPage extends StatelessWidget {
     text: 'Show the menu to see the usual default buttons, but with a custom appearance.',
   );
 
+  static const String url = '$kCodeUrl/crazy_buttons_page.dart';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(CrazyButtonsPage.title),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.code),
+            onPressed: () async {
+              if (!await launchUrl(Uri.parse(url))) {
+                throw 'Could not launch $url';
+              }
+            },
+          ),
+        ],
       ),
       body: Center(
         child: SizedBox(

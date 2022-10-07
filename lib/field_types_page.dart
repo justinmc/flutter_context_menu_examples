@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'constants.dart';
 
 class FieldTypesPage extends StatelessWidget {
   FieldTypesPage({
@@ -9,6 +12,7 @@ class FieldTypesPage extends StatelessWidget {
   static const String route = 'field-types';
   static const String title = 'The Context Menu in Different Field Types';
   static const String subtitle = 'How contextual menus work in TextField, CupertinoTextField, and EditableText';
+  static const String url = '$kCodeUrl/field_types_page.dart';
 
   final TextEditingController _controller = TextEditingController(
     text: 'Material text field shows the menu for any platform by default.',
@@ -31,6 +35,16 @@ class FieldTypesPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(FieldTypesPage.title),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.code),
+            onPressed: () async {
+              if (!await launchUrl(Uri.parse(url))) {
+                throw 'Could not launch $url';
+              }
+            },
+          ),
+        ],
       ),
       body: Center(
         child: SizedBox(

@@ -1,6 +1,9 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'constants.dart';
 
 class ReorderedButtonsPage extends StatelessWidget {
   ReorderedButtonsPage({
@@ -10,6 +13,7 @@ class ReorderedButtonsPage extends StatelessWidget {
   static const String route = 'reordered-buttons';
   static const String title = 'Reordered Buttons';
   static const String subtitle = 'The usual buttons, but in a different order.';
+  static const String url = '$kCodeUrl/reordered_buttons_page.dart';
 
   final TextEditingController _controllerNormal = TextEditingController(
     text: 'This button has the default buttons for reference.',
@@ -24,6 +28,16 @@ class ReorderedButtonsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(ReorderedButtonsPage.title),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.code),
+            onPressed: () async {
+              if (!await launchUrl(Uri.parse(url))) {
+                throw 'Could not launch $url';
+              }
+            },
+          ),
+        ],
       ),
       body: Center(
         child: SizedBox(

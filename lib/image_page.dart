@@ -1,20 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import 'constants.dart';
 import 'context_menu_region.dart';
 
 class ImagePage extends StatelessWidget {
-  ImagePage({
+  const ImagePage({
     Key? key,
   }) : super(key: key);
 
   static const String route = 'image';
   static const String title = 'ContextMenu on an Image';
   static const String subtitle = 'A ContextMenu the displays on an Image widget';
-
-  final TextEditingController _controller = TextEditingController(
-    text: 'Right click or long press on the image to see a special menu',
-  );
+  static const String url = '$kCodeUrl/image_page.dart';
 
   DialogRoute _showDialog (BuildContext context) {
     return DialogRoute<void>(
@@ -29,6 +27,16 @@ class ImagePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(ImagePage.title),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.code),
+            onPressed: () async {
+              if (!await launchUrl(Uri.parse(url))) {
+                throw 'Could not launch $url';
+              }
+            },
+          ),
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
