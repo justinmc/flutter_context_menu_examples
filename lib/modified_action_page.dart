@@ -27,15 +27,22 @@ class ModifiedActionPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(ModifiedActionPage.title),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          TextField(
-            controller: _controller,
-            contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-              return EditableTextContextMenuButtonItemsBuilder(
-                editableTextState: editableTextState,
-                builder: (BuildContext context, List<ContextMenuButtonItem> buttonItems) {
+      body: Center(
+        child: SizedBox(
+          width: 300.0,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'This example shows adding to the behavior of a default button.',
+              ),
+              const SizedBox(
+                height: 30.0,
+              ),
+              TextField(
+                controller: _controller,
+                contextMenuBuilder: (BuildContext context, EditableTextState editableTextState) {
+                  final List<ContextMenuButtonItem> buttonItems = editableTextState.contextMenuButtonItems;
                   // Modify the copy buttonItem to show a dialog after copying.
                   final int copyButtonIndex = buttonItems.indexWhere(
                     (ContextMenuButtonItem buttonItem) {
@@ -52,16 +59,15 @@ class ModifiedActionPage extends StatelessWidget {
                       },
                     );
                   }
-                  return AdaptiveTextSelectionToolbarButtonItems(
-                    primaryAnchor: primaryAnchor,
-                    secondaryAnchor: secondaryAnchor,
+                  return AdaptiveTextSelectionToolbar.buttonItems(
+                    anchors: AdaptiveTextSelectionToolbar.getAnchorsEditable(editableTextState),
                     buttonItems: buttonItems,
                   );
                 },
-              );
-            },
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

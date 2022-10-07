@@ -25,23 +25,25 @@ class ReorderedButtonsPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(ReorderedButtonsPage.title),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          TextField(
-            controller: _controllerNormal,
-          ),
-          const SizedBox(height: 20.0),
-          TextField(
-            controller: _controllerReordered,
-            contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-              return EditableTextContextMenuButtonItemsBuilder(
-                editableTextState: editableTextState,
-                builder: (BuildContext context, List<ContextMenuButtonItem> buttonItems) {
+      body: Center(
+        child: SizedBox(
+          width: 300.0,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextField(
+                maxLines: 2,
+                controller: _controllerNormal,
+              ),
+              const SizedBox(height: 20.0),
+              TextField(
+                controller: _controllerReordered,
+                maxLines: 2,
+                contextMenuBuilder: (BuildContext context, EditableTextState editableTextState) {
                   // Reorder the button datas by type.
                   final HashMap<ContextMenuButtonType, ContextMenuButtonItem> buttonItemsMap =
                       HashMap<ContextMenuButtonType, ContextMenuButtonItem>();
-                  for (ContextMenuButtonItem buttonItem in buttonItems) {
+                  for (ContextMenuButtonItem buttonItem in editableTextState.contextMenuButtonItems) {
                     buttonItemsMap[buttonItem.type] = buttonItem;
                   }
                   final List<ContextMenuButtonItem> reorderedButtonItems = <ContextMenuButtonItem>[
@@ -54,16 +56,15 @@ class ReorderedButtonsPage extends StatelessWidget {
                     if (buttonItemsMap.containsKey(ContextMenuButtonType.cut))
                       buttonItemsMap[ContextMenuButtonType.cut]!,
                   ];
-                  return AdaptiveTextSelectionToolbarButtonItems(
-                    primaryAnchor: primaryAnchor,
-                    secondaryAnchor: secondaryAnchor,
+                  return AdaptiveTextSelectionToolbar.buttonItems(
+                    anchors: AdaptiveTextSelectionToolbar.getAnchorsEditable(editableTextState),
                     buttonItems: reorderedButtonItems,
                   );
                 },
-              );
-            },
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

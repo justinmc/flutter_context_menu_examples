@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'context_menu_region.dart';
+import 'is_valid_email.dart';
 
 class FullPage extends StatelessWidget {
   FullPage({
@@ -9,8 +10,8 @@ class FullPage extends StatelessWidget {
   }) : super(key: key);
 
   static const String route = 'full';
-  static const String title = 'Full Example';
-  static const String subtitle = 'Combining everything';
+  static const String title = 'Combined Example';
+  static const String subtitle = 'Combining several different types of custom menus.';
 
   final TextEditingController _controller = TextEditingController(
     text: 'Custom menus everywhere. me@example.com',
@@ -31,10 +32,11 @@ class FullPage extends StatelessWidget {
         title: const Text(FullPage.title),
       ),
       body: ContextMenuRegion(
-        contextMenuBuilder: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-          return AdaptiveTextSelectionToolbarButtonItems(
-            primaryAnchor: primaryAnchor,
-            secondaryAnchor: secondaryAnchor,
+        contextMenuBuilder: (BuildContext context, Offset offset) {
+          return AdaptiveTextSelectionToolbar.buttonItems(
+            anchors: TextSelectionToolbarAnchors(
+              primaryAnchor: offset,
+            ),
             buttonItems: <ContextMenuButtonItem>[
               ContextMenuButtonItem(
                 onPressed: () {
@@ -46,40 +48,48 @@ class FullPage extends StatelessWidget {
             ],
           );
         },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ContextMenuRegion(
-              contextMenuBuilder: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-                return AdaptiveTextSelectionToolbarButtonItems(
-                  primaryAnchor: primaryAnchor,
-                  secondaryAnchor: secondaryAnchor,
-                  buttonItems: <ContextMenuButtonItem>[
-                    ContextMenuButtonItem(
-                      onPressed: () {
-                        ContextMenuController.removeAny();
-                        Navigator.of(context).push(_showDialog(context, 'Image saved! (not really though)'));
-                      },
-                      label: 'Save',
-                    ),
-                  ],
-                );
-              },
-              child: SizedBox(
-                width: 200.0,
-                height: 200.0,
-                child: Image.asset('flutter.jpg'),
-              ),
-            ),
-            Container(height: 20.0),
-            TextField(
-              controller: _controller,
-              contextMenuBuilder: (BuildContext context, EditableTextState editableTextState, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-                return EditableTextContextMenuButtonItemsBuilder(
-                  editableTextState: editableTextState,
-                  builder: (BuildContext context, List<ContextMenuButtonItem> buttonItems) {
+        child: Center(
+          child: SizedBox(
+            width: 400.0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  'This example simply shows how many of the previous examples can be combined in a single app.',
+                ),
+                const SizedBox(
+                  height: 60.0,
+                ),
+                ContextMenuRegion(
+                  contextMenuBuilder: (BuildContext context, Offset offset) {
+                    return AdaptiveTextSelectionToolbar.buttonItems(
+                      anchors: TextSelectionToolbarAnchors(
+                        primaryAnchor: offset,
+                      ),
+                      buttonItems: <ContextMenuButtonItem>[
+                        ContextMenuButtonItem(
+                          onPressed: () {
+                            ContextMenuController.removeAny();
+                            Navigator.of(context).push(_showDialog(context, 'Image saved! (not really though)'));
+                          },
+                          label: 'Save',
+                        ),
+                      ],
+                    );
+                  },
+                  child: const SizedBox(
+                    width: 200.0,
+                    height: 200.0,
+                    child: FlutterLogo(),
+                  ),
+                ),
+                Container(height: 20.0),
+                TextField(
+                  controller: _controller,
+                  contextMenuBuilder: (BuildContext context, EditableTextState editableTextState) {
                     final TextEditingValue value = editableTextState.textEditingValue;
-                    if (_isValidEmail(value.selection.textInside(value.text))) {
+                    final List<ContextMenuButtonItem> buttonItems = editableTextState.contextMenuButtonItems;
+                    if (isValidEmail(value.selection.textInside(value.text))) {
                       buttonItems.insert(0, ContextMenuButtonItem(
                         label: 'Send email',
                         onPressed: () {
@@ -89,8 +99,7 @@ class FullPage extends StatelessWidget {
                       ));
                     }
                     return AdaptiveTextSelectionToolbar(
-                      primaryAnchor: primaryAnchor,
-                      secondaryAnchor: secondaryAnchor,
+                      anchors: AdaptiveTextSelectionToolbar.getAnchorsEditable(editableTextState),
                       // Build the default buttons, but make them look crazy.
                       // Note that in a real project you may want to build
                       // different buttons depending on the platform.
@@ -105,24 +114,19 @@ class FullPage extends StatelessWidget {
                           child: SizedBox(
                             width: 200.0,
                             child: Text(
-                              CupertinoTextSelectionToolbarButtonsBuilder.getButtonLabel(context, buttonItem),
+                              CupertinoAdaptiveTextSelectionToolbar.getButtonLabel(context, buttonItem),
                             ),
                           ),
                         );
                       }).toList(),
                     );
                   },
-                );
-              },
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
   }
-}
-
-bool _isValidEmail(String text) {
-  return RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-    .hasMatch(text);
 }

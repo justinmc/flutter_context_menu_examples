@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'context_menu_region.dart';
@@ -34,10 +35,11 @@ class ImagePage extends StatelessWidget {
         children: <Widget>[
           Container(height: 200.0),
           ContextMenuRegion(
-            contextMenuBuilder: (BuildContext context, Offset primaryAnchor, [Offset? secondaryAnchor]) {
-              return AdaptiveTextSelectionToolbarButtonItems(
-                primaryAnchor: primaryAnchor,
-                secondaryAnchor: secondaryAnchor,
+            contextMenuBuilder: (BuildContext context, Offset offset) {
+              return AdaptiveTextSelectionToolbar.buttonItems(
+                anchors: TextSelectionToolbarAnchors(
+                  primaryAnchor: offset,
+                ),
                 buttonItems: <ContextMenuButtonItem>[
                   ContextMenuButtonItem(
                     onPressed: () {
@@ -49,14 +51,16 @@ class ImagePage extends StatelessWidget {
                 ],
               );
             },
-            child: SizedBox(
+            child: const SizedBox(
               width: 200.0,
               height: 200.0,
-              child: Image.asset('flutter.jpg'),
+              child: FlutterLogo(),
             ),
           ),
           Container(height: 20.0),
-          TextField(controller: _controller),
+          const Text(
+            'Right click or long press on the image to see a special menu.',
+          ),
         ],
       ),
     );
