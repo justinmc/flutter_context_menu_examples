@@ -71,7 +71,7 @@ class ReorderedButtonsPage extends StatelessWidget {
                       buttonItemsMap[ContextMenuButtonType.cut]!,
                   ];
                   return AdaptiveTextSelectionToolbar.buttonItems(
-                    anchors: AdaptiveTextSelectionToolbar.getAnchorsEditable(editableTextState),
+                    anchors: editableTextState.contextMenuAnchors,
                     buttonItems: reorderedButtonItems,
                   );
                 },

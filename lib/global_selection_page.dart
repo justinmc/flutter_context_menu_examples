@@ -22,7 +22,7 @@ class GlobalSelectionPage extends StatelessWidget {
     return SelectionArea(
       contextMenuBuilder: (BuildContext context, SelectableRegionState selectableRegionState) {
         return AdaptiveTextSelectionToolbar.buttonItems(
-          anchors: AdaptiveTextSelectionToolbar.getAnchorsSelectable(selectableRegionState),
+          anchors: selectableRegionState.contextMenuAnchors,
           buttonItems: <ContextMenuButtonItem>[
             ...selectableRegionState.contextMenuButtonItems,
             ContextMenuButtonItem(

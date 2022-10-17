@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'anywhere_page.dart';
@@ -11,7 +12,10 @@ import 'image_page.dart';
 import 'modified_action_page.dart';
 import 'reordered_buttons_page.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -25,6 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Validation Sandbox',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        platform: TargetPlatform.macOS,
       ),
       initialRoute: '/',
       routes: <String, Widget Function(BuildContext)>{
@@ -33,7 +38,7 @@ class MyApp extends StatelessWidget {
         CrazyButtonsPage.route: (BuildContext context) => CrazyButtonsPage(),
         ReorderedButtonsPage.route: (BuildContext context) => ReorderedButtonsPage(),
         EmailButtonPage.route: (BuildContext context) => EmailButtonPage(),
-        ImagePage.route: (BuildContext context) => ImagePage(),
+        ImagePage.route: (BuildContext context) => const ImagePage(),
         FieldTypesPage.route: (BuildContext context) => FieldTypesPage(),
         FullPage.route: (BuildContext context) => FullPage(),
         ModifiedActionPage.route: (BuildContext context) => ModifiedActionPage(),

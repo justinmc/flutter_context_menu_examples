@@ -79,7 +79,7 @@ class DefaultValuesPage extends StatelessWidget {
                 controller: _controllerCustom,
                 contextMenuBuilder: (BuildContext context, EditableTextState editableTextState) {
                   return AdaptiveTextSelectionToolbar.buttonItems(
-                    anchors: AdaptiveTextSelectionToolbar.getAnchorsEditable(editableTextState),
+                    anchors: editableTextState.contextMenuAnchors,
                     buttonItems: <ContextMenuButtonItem>[
                       ContextMenuButtonItem(
                         label: 'Custom button',
