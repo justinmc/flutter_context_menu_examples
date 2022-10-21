@@ -80,8 +80,8 @@ class DefaultValuesPage extends StatelessWidget {
                 contextMenuBuilder: (BuildContext context, EditableTextState editableTextState) {
                   return AdaptiveTextSelectionToolbar.buttonItems(
                     anchors: AdaptiveTextSelectionToolbar.getAnchorsEditable(editableTextState),
-                    buttonItems: <ContextMenuButtonItem>[
-                      ContextMenuButtonItem(
+                    buttonItems: <ContextMenuItem>[
+                      ContextMenuItem(
                         label: 'Custom button',
                         onPressed: () {
                           ContextMenuController.removeAny();

@@ -50,8 +50,8 @@ class FullPage extends StatelessWidget {
             anchors: TextSelectionToolbarAnchors(
               primaryAnchor: offset,
             ),
-            buttonItems: <ContextMenuButtonItem>[
-              ContextMenuButtonItem(
+            buttonItems: <ContextMenuItem>[
+              ContextMenuItem(
                 onPressed: () {
                   ContextMenuController.removeAny();
                   Navigator.of(context).pop();
@@ -79,8 +79,8 @@ class FullPage extends StatelessWidget {
                       anchors: TextSelectionToolbarAnchors(
                         primaryAnchor: offset,
                       ),
-                      buttonItems: <ContextMenuButtonItem>[
-                        ContextMenuButtonItem(
+                      buttonItems: <ContextMenuItem>[
+                        ContextMenuItem(
                           onPressed: () {
                             ContextMenuController.removeAny();
                             Navigator.of(context).push(_showDialog(context, 'Image saved! (not really though)'));
@@ -101,9 +101,9 @@ class FullPage extends StatelessWidget {
                   controller: _controller,
                   contextMenuBuilder: (BuildContext context, EditableTextState editableTextState) {
                     final TextEditingValue value = editableTextState.textEditingValue;
-                    final List<ContextMenuButtonItem> buttonItems = editableTextState.contextMenuButtonItems;
+                    final List<ContextMenuItem> buttonItems = editableTextState.contextMenuButtonItems;
                     if (isValidEmail(value.selection.textInside(value.text))) {
-                      buttonItems.insert(0, ContextMenuButtonItem(
+                      buttonItems.insert(0, ContextMenuItem(
                         label: 'Send email',
                         onPressed: () {
                           ContextMenuController.removeAny();
@@ -116,7 +116,7 @@ class FullPage extends StatelessWidget {
                       // Build the default buttons, but make them look crazy.
                       // Note that in a real project you may want to build
                       // different buttons depending on the platform.
-                      children: buttonItems.map((ContextMenuButtonItem buttonItem) {
+                      children: buttonItems.map((ContextMenuItem buttonItem) {
                         return CupertinoButton(
                           borderRadius: null,
                           color: const Color(0xffaaaa00),

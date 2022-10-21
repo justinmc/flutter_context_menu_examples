@@ -23,9 +23,9 @@ class GlobalSelectionPage extends StatelessWidget {
       contextMenuBuilder: (BuildContext context, SelectableRegionState selectableRegionState) {
         return AdaptiveTextSelectionToolbar.buttonItems(
           anchors: AdaptiveTextSelectionToolbar.getAnchorsSelectable(selectableRegionState),
-          buttonItems: <ContextMenuButtonItem>[
+          buttonItems: <ContextMenuItem>[
             ...selectableRegionState.contextMenuButtonItems,
-            ContextMenuButtonItem(
+            ContextMenuItem(
               onPressed: () {
                 ContextMenuController.removeAny();
                 Navigator.of(context).pop();

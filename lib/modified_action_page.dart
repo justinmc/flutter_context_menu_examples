@@ -56,15 +56,15 @@ class ModifiedActionPage extends StatelessWidget {
               TextField(
                 controller: _controller,
                 contextMenuBuilder: (BuildContext context, EditableTextState editableTextState) {
-                  final List<ContextMenuButtonItem> buttonItems = editableTextState.contextMenuButtonItems;
+                  final List<ContextMenuItem> buttonItems = editableTextState.contextMenuButtonItems;
                   // Modify the copy buttonItem to show a dialog after copying.
                   final int copyButtonIndex = buttonItems.indexWhere(
-                    (ContextMenuButtonItem buttonItem) {
+                    (ContextMenuItem buttonItem) {
                       return buttonItem.type == ContextMenuButtonType.copy;
                     },
                   );
                   if (copyButtonIndex >= 0) {
-                    final ContextMenuButtonItem copyButtonItem =
+                    final ContextMenuItem copyButtonItem =
                         buttonItems[copyButtonIndex];
                     buttonItems[copyButtonIndex] = copyButtonItem.copyWith(
                       onPressed: () {

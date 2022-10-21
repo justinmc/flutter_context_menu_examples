@@ -48,8 +48,8 @@ class ImagePage extends StatelessWidget {
                 anchors: TextSelectionToolbarAnchors(
                   primaryAnchor: offset,
                 ),
-                buttonItems: <ContextMenuButtonItem>[
-                  ContextMenuButtonItem(
+                buttonItems: <ContextMenuItem>[
+                  ContextMenuItem(
                     onPressed: () {
                       ContextMenuController.removeAny();
                       Navigator.of(context).push(_showDialog(context));

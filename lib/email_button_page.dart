@@ -58,10 +58,10 @@ class EmailButtonPage extends StatelessWidget {
                 controller: _controller,
                 contextMenuBuilder: (BuildContext context, EditableTextState editableTextState) {
                   final TextEditingValue value = editableTextState.textEditingValue;
-                  final List<ContextMenuButtonItem> buttonItems =
+                  final List<ContextMenuItem> buttonItems =
                       editableTextState.contextMenuButtonItems;
                   if (isValidEmail(value.selection.textInside(value.text))) {
-                    buttonItems.insert(0, ContextMenuButtonItem(
+                    buttonItems.insert(0, ContextMenuItem(
                       label: 'Send email',
                       onPressed: () {
                         ContextMenuController.removeAny();

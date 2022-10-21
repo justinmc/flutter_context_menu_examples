@@ -48,7 +48,7 @@ class CrazyButtonsPage extends StatelessWidget {
                 // Build the default buttons, but make them look custom.
                 // Note that in a real project you may want to build
                 // different buttons depending on the platform.
-                children: editableTextState.contextMenuButtonItems.map((ContextMenuButtonItem buttonItem) {
+                children: editableTextState.contextMenuButtonItems.map((ContextMenuItem buttonItem) {
                   return CupertinoButton(
                     borderRadius: null,
                     color: const Color(0xffaaaa00),

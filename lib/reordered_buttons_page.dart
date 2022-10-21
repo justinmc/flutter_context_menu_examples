@@ -55,12 +55,12 @@ class ReorderedButtonsPage extends StatelessWidget {
                 maxLines: 2,
                 contextMenuBuilder: (BuildContext context, EditableTextState editableTextState) {
                   // Reorder the button datas by type.
-                  final HashMap<ContextMenuButtonType, ContextMenuButtonItem> buttonItemsMap =
-                      HashMap<ContextMenuButtonType, ContextMenuButtonItem>();
-                  for (ContextMenuButtonItem buttonItem in editableTextState.contextMenuButtonItems) {
+                  final HashMap<ContextMenuButtonType, ContextMenuItem> buttonItemsMap =
+                      HashMap<ContextMenuButtonType, ContextMenuItem>();
+                  for (ContextMenuItem buttonItem in editableTextState.contextMenuButtonItems) {
                     buttonItemsMap[buttonItem.type] = buttonItem;
                   }
-                  final List<ContextMenuButtonItem> reorderedButtonItems = <ContextMenuButtonItem>[
+                  final List<ContextMenuItem> reorderedButtonItems = <ContextMenuItem>[
                     if (buttonItemsMap.containsKey(ContextMenuButtonType.selectAll))
                       buttonItemsMap[ContextMenuButtonType.selectAll]!,
                     if (buttonItemsMap.containsKey(ContextMenuButtonType.paste))

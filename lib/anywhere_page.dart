@@ -49,8 +49,8 @@ class AnywherePage extends StatelessWidget {
               primaryAnchor: primaryAnchor,
               secondaryAnchor: secondaryAnchor,
             ),
-            buttonItems: <ContextMenuButtonItem>[
-              ContextMenuButtonItem(
+            buttonItems: <ContextMenuItem>[
+              ContextMenuItem(
                 onPressed: () {
                   ContextMenuController.removeAny();
                   Navigator.of(context).pop();
