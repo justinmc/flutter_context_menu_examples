@@ -39,9 +39,8 @@ class ImagePage extends StatelessWidget {
         ],
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Container(height: 200.0),
           ContextMenuRegion(
             contextMenuBuilder: (BuildContext context, Offset offset) {
               return AdaptiveTextSelectionToolbar.buttonItems(

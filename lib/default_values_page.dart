@@ -13,7 +13,7 @@ class DefaultValuesPage extends StatelessWidget {
   static const String subtitle = 'Shows what happens when you pass various things into contextMenuBuilder.';
 
   final TextEditingController _controllerNone = TextEditingController(
-    text: "When contextMenuBuilder isn't given at all.",
+    text: "When contextMenuBuilder isn't given anything at all.",
   );
 
   final TextEditingController _controllerNull = TextEditingController(

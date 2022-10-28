@@ -81,6 +81,11 @@ class MyHomePage extends StatelessWidget {
             subtitle: CrazyButtonsPage.subtitle,
           ),
           MyListItem(
+            route: EmailButtonPage.route,
+            title: EmailButtonPage.title,
+            subtitle: EmailButtonPage.subtitle,
+          ),
+          MyListItem(
             route: ReorderedButtonsPage.route,
             title: ReorderedButtonsPage.title,
             subtitle: ReorderedButtonsPage.subtitle,
@@ -89,11 +94,6 @@ class MyHomePage extends StatelessWidget {
             route: ModifiedActionPage.route,
             title: ModifiedActionPage.title,
             subtitle: ModifiedActionPage.subtitle,
-          ),
-          MyListItem(
-            route: EmailButtonPage.route,
-            title: EmailButtonPage.title,
-            subtitle: EmailButtonPage.subtitle,
           ),
           MyListItem(
             route: FieldTypesPage.route,
