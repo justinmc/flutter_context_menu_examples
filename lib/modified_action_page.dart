@@ -68,7 +68,7 @@ class ModifiedActionPage extends StatelessWidget {
                         buttonItems[copyButtonIndex];
                     buttonItems[copyButtonIndex] = copyButtonItem.copyWith(
                       onPressed: () {
-                        copyButtonItem.onPressed();
+                        copyButtonItem.onPressed?.call();
                         Navigator.of(context).push(_showDialog(context));
                       },
                     );

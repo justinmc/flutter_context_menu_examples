@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Validation Sandbox',
+      title: 'Flutter Context Menu Examples',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         platform: TargetPlatform.macOS,
